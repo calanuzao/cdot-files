@@ -1,0 +1,3 @@
+
+diff_context_lines is deprecated, use vim_diff_opts = { ctxlen = 0 } instead.
+Feature will be removed in telescope-undo.nvim 1.0
