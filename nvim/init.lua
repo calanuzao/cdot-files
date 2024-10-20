@@ -28,3 +28,19 @@ vim.cmd("colorscheme tokyonight")
 vim.cmd('hi IlluminatedWordText guibg=none gui=underline')
 vim.cmd('hi IlluminatedWordRead guibg=none gui=underline')
 vim.cmd('hi IlluminatedWordWrite guibg=none gui=underline')
+
+-- Arduino Configuration
+vim.cmd([[
+  command! TestAsync execute 'AsyncRun echo "AsyncRun is working!"'
+
+  command! ArduinoVerify execute 'AsyncRun -raw -post=checktime echo "Starting verify..." && arduino-cli compile --fqbn esp32:esp32:esp32s3 -v %:p:h'
+  command! ArduinoUpload execute 'AsyncRun -raw -post=checktime echo "Starting upload..." && arduino-cli upload -p /dev/cu.usbmodem1101 --fqbn esp32:esp32:esp32s3 -v %:p:h'
+  
+  augroup AsyncRunQuickfix
+    autocmd!
+    autocmd User AsyncRunStart call asyncrun#quickfix_toggle(8, 1)
+  augroup END
+  
+  let g:asyncrun_status = ''
+  set statusline+=%{g:asyncrun_status}
+]])

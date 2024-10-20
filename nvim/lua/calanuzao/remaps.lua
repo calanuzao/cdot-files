@@ -1,3 +1,7 @@
+-- Arduino Verify and Upload
+vim.keymap.set('n', '<leader>av', ':ArduinoVerify<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>au', ':ArduinoUpload<CR>', { noremap = true, silent = true })
+
 -- Oil
 vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
 

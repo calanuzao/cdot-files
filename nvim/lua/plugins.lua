@@ -1,4 +1,9 @@
 return {
+   -- Add AsyncRun plugin
+  {
+    'skywind3000/asyncrun.vim',
+    cmd = { 'AsyncRun', 'AsyncStop' }
+  },
   {
     "ThePrimeagen/vim-be-good",
     config = function()
