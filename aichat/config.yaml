@@ -1,0 +1,12 @@
+# AI Chat Configuration
+model: gpt-3.5-turbo
+temperature: 0.7
+max_tokens: 2000
+role: |
+  You are a helpful AI assistant with expertise in software development, 
+  particularly in C++, Python, and MATLAB. You provide clear, concise answers 
+  with practical examples when appropriate.
+context_size: 4096
+save_context: true
+code_theme: monokai
+language: en

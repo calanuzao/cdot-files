@@ -1,0 +1,5 @@
+# nbterm configuration
+margin: 10          # Adjust this value to increase/decrease margins
+max_width: 100      # Maximum width of the notebook
+center: true        # Center the content
+theme: "monokai"    # Syntax highlighting theme

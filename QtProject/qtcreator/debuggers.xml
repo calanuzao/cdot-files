@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorDebuggers>
-<!-- Written by QtCreator 12.0.2, 2024-08-14T13:07:08. -->
+<!-- Written by QtCreator 12.0.2, 2024-12-03T14:41:56. -->
 <qtcreator>
  <data>
   <variable>DebuggerItem.0</variable>
@@ -15,8 +15,8 @@
    <value type="QString" key="DisplayName">System LLDB at /Applications/Xcode.app/Contents/Developer/usr/bin/lldb</value>
    <value type="int" key="EngineType">256</value>
    <value type="QString" key="Id">{d370fa1a-2ce3-4dbf-b280-73a74aed78e0}</value>
-   <value type="QDateTime" key="LastModified">2023-12-10T23:44:39.000</value>
-   <value type="QString" key="Version">1500.0.200.58</value>
+   <value type="QDateTime" key="LastModified">2024-10-16T01:24:20.000</value>
+   <value type="QString" key="Version">1600.0.39.3</value>
    <value type="QString" key="WorkingDirectory"></value>
   </valuemap>
  </data>
@@ -33,8 +33,8 @@
    <value type="QString" key="DisplayName">System LLDB at /usr/bin/lldb</value>
    <value type="int" key="EngineType">256</value>
    <value type="QString" key="Id">{6508dc57-6e53-4fad-b01e-1ceb7a389bf4}</value>
-   <value type="QDateTime" key="LastModified">2024-07-18T23:08:52.000</value>
-   <value type="QString" key="Version">1500.0.404.7</value>
+   <value type="QDateTime" key="LastModified">2024-11-14T23:59:47.000</value>
+   <value type="QString" key="Version">1600.0.39.3</value>
    <value type="QString" key="WorkingDirectory"></value>
   </valuemap>
  </data>

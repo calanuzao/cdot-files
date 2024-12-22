@@ -1,5 +1,143 @@
 return {
-   -- Add AsyncRun plugin
+  -- LaTex Editor (VimTeX)
+{
+  "lervag/vimtex",
+  lazy = false,
+  config = function()
+    -- Detect OS
+    local system = vim.loop.os_uname().sysname
+    
+    -- Set PDF viewer based on OS
+    if system == "Darwin" then  -- macOS
+      vim.g.vimtex_view_method = 'skim'
+      -- Forward search after compilation
+      vim.g.vimtex_view_skim_sync = 1
+      -- Focus Skim after forward search
+      vim.g.vimtex_view_skim_activate = 1
+    elseif system == "Linux" then
+      vim.g.vimtex_view_method = 'zathura'
+    elseif system == "Windows_NT" then
+      vim.g.vimtex_view_method = 'sumatrapdf'
+    end
+    
+    -- PDF Viewer settings
+    vim.g.vimtex_quickfix_mode = 0
+    
+    -- Disable custom warnings
+    vim.g.vimtex_quickfix_ignore_filters = {
+      'Underfull',
+      'Overfull',
+      'specifier changed to',
+    }
+
+    -- Disable imaps (we'll use UltiSnips for this)
+    vim.g.vimtex_imaps_enabled = 0
+    
+    -- Don't open pdfviwer on compile
+    vim.g.vimtex_view_automatic = 0
+    
+    -- Disable conceal
+    vim.g.vimtex_syntax_conceal = {
+      accents = 1,
+      ligatures = 1,
+      cites = 1,
+      fancy = 1,
+      spacing = 0,  -- default: 1
+      greek = 1,
+      math_bounds = 1,
+      math_delimiters = 1,
+      math_fracs = 1,
+      math_super_sub = 1,
+      math_symbols = 1,
+      sections = 0,
+      styles = 1,
+    }
+    
+    -- Latex warnings to ignore
+    vim.g.vimtex_quickfix_ignore_filters = {
+      'Underfull \\hbox',
+      'Overfull \\hbox',
+      'LaTeX Warning: .*item may have changed',
+      'LaTeX hooks Warning',
+    }
+
+    -- Set up autocommand for LaTeX files
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "tex",
+      callback = function()
+        -- Spell checking
+        vim.opt_local.spell = true
+        vim.opt_local.spelllang = { 'en_us' }
+        
+        -- Spell correction mapping
+        vim.keymap.set('i', '<C-l>', '<c-g>u<Esc>[s1z=`]a<c-g>u', { buffer = true, silent = true })
+        
+        -- Set conceallevel
+        vim.opt_local.conceallevel = 2
+        
+        -- Set text width for automatic wrapping
+        vim.opt_local.textwidth = 80
+        
+        -- Enable word wrapping
+        vim.opt_local.wrap = true
+        vim.opt_local.linebreak = true
+        
+        -- Indentation settings
+        vim.opt_local.expandtab = true
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.softtabstop = 2
+        
+        -- Compile on save
+        vim.api.nvim_create_autocmd("BufWritePost", {
+          pattern = "*.tex",
+          callback = function()
+            vim.cmd("VimtexCompile")
+          end,
+          buffer = 0
+        })
+      end
+    })
+  end,
+},
+
+-- Add UltiSnips configuration
+{
+  "SirVer/ultisnips",
+  dependencies = {
+    "honza/vim-snippets",
+  },
+  config = function()
+    vim.g.UltiSnipsExpandTrigger = '<tab>'
+    vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
+    vim.g.UltiSnipsJumpBackwardTrigger = '<s-tab>'
+    vim.g.UltiSnipsSnippetDirectories = {
+      vim.fn.stdpath('config') .. '/UltiSnips',
+      'UltiSnips'
+    }
+  end,
+},
+
+  -- ChatGPT 
+{
+  "dreamsofcode-io/ChatGPT.nvim",
+  event = "VeryLazy",
+  dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+  },
+  config = function()
+      require("chatgpt").setup({
+          -- Command to retrieve the API key from your environment variables
+          api_key_cmd = "echo $API_KEY"
+      })
+  end,
+  },
+  -- File Explorer
+  {
+  'kyazdani42/nvim-tree.lua'
+  }, 
+  -- Add AsyncRun plugin
   {
     'skywind3000/asyncrun.vim',
     cmd = { 'AsyncRun', 'AsyncStop' }
@@ -164,14 +302,14 @@ return {
     opts = function()
       local logo = [[
                                                                                
-      ▄████████    ▄████████  ▄█        ▄██████▄  ████████▄   ▄█   ▄█          ▄████████     ███     ███    █▄  ████████▄   ▄█   ▄██████▄     ▄████████ 
-      ███    ███   ███    ███ ███       ███    ███ ███   ▀███ ███  ███         ███    ███ ▀█████████▄ ███    ███ ███   ▀███ ███  ███    ███   ███    ███ 
-      ███    █▀    ███    ███ ███       ███    ███ ███    ███ ███▌ ███▌        ███    █▀     ▀███▀▀██ ███    ███ ███    ███ ███▌ ███    ███   ███    █▀  
-      ███          ███    ███ ███       ███    ███ ███    ███ ███▌ ███▌        ███            ███   ▀ ███    ███ ███    ███ ███▌ ███    ███   ███        
-      ███        ▀███████████ ███       ███    ███ ███    ███ ███▌ ███▌      ▀███████████     ███     ███    ███ ███    ███ ███▌ ███    ███ ▀███████████ 
-      ███    █▄    ███    ███ ███       ███    ███ ███    ███ ███  ███                ███     ███     ███    ███ ███    ███ ███  ███    ███          ███ 
-      ███    ███   ███    ███ ███▌    ▄ ███    ███ ███   ▄███ ███  ███          ▄█    ███     ███     ███    ███ ███   ▄███ ███  ███    ███    ▄█    ███ 
-      ████████▀    ███    █▀  █████▄▄██  ▀██████▀  ████████▀  █▀   █▀         ▄████████▀     ▄████▀   ████████▀  ████████▀  █▀    ▀██████▀   ▄████████▀ 
+      ▄████████    ▄████████  ▄█        ▄██████▄  ████████▄   ▄█   ▄█          ▄████████     ███      ███    █▄  ████████▄   ▄█   ▄██████▄     ▄████████ 
+      ███    ███   ███    ███ ███       ███    ███ ███   ▀███ ███  ███         ███    ██ ▀█████████▄  ███    ███ ███   ▀███  ███  ███    ███   ███   ███ 
+      ███    █▀    ███    ███ ███       ███    ███ ███    ███ ███▌ ███▌        ███    █▀     ▀███▀▀██ ███    ███ ███    ███  ███▌ ███    ███   ███    █▀  
+      ███          ███    ███ ███       ███    ███ ███    ███ ███▌ ███▌        ███            ███   ▀ ███    ███ ███    ███  ███▌ ███    ███   ███        
+      ███        ▀███████████ ███       ███    ███ ███    ███ ███▌ ███▌      ▀██████████      ███     ███    ███ ███    ███  ███▌ ███    ███ ▀██████████ 
+      ███    █▄    ███    ███ ███       ███    ███ ███    ███ ███  ███                ███     ███     ███    ███ ███    ███  ███  ███    ███          ███ 
+      ███    ██    ███    ███ ███▌    ▄ ███    ███ ███   ▄███ ███  ███          ▄█    ███     ███     ███    ███ ███   ▄███  ███  ███    ███    ▄█    ███ 
+      ████████▀    ███    █▀  █████▄▄██  ▀██████▀  ████████▀  █▀   █▀         ▄████████▀     ▄████▀   ████████▀  ████████▀   █▀    ▀██████▀   ▄████████▀ 
                                                                                
       ]]
 
@@ -487,7 +625,25 @@ return {
   },
   { "nvim-telescope/telescope-fzf-native.nvim",    build = "make" },
   {
+    "rose-pine/neovim", name = "rose-pine"
+  },
+  {
+    'oneslash/helix-nvim', version = "*"
+  },
+  {
+    url = "https://codeberg.org/jthvai/lavender.nvim",
+    branch = "stable", -- versioned tags + docs updates from main
+    lazy = false,
+    priority = 1000,
+  },
+  {
     "folke/tokyonight.nvim",
+  },
+  {
+    "xiantang/darcula-dark.nvim",
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+    },
   },
   {
     "catppuccin/nvim",
