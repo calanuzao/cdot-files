@@ -60,9 +60,48 @@ y = 700
 [general]
 live_config_reload = true
 
-[terminal]
+# [terminal]
+# [terminal.shell]
+# program = "/bin/zsh"
+# args = ["-l", "-c", "~/.config/tmux/session-init.sh"]
 
+[[keyboard.bindings]]
+key = "N"
+mods = "Command"
+action = "CreateNewWindow"
 
-[terminal.shell]
-program = "/bin/zsh"
-args = ["-l", "-c", "tmux attach || tmux new-session -s main"]
+[[keyboard.bindings]]
+key = "W"
+mods = "Command"
+action = "Quit"
+
+[[keyboard.bindings]]
+key = "D"
+mods = "Command"
+action = "CreateNewWindow"
+
+# Gruvbox Color Scheme
+[colors]
+  [colors.primary]
+  background = "#282828"  # dark gruvbox background
+  foreground = "#ebdbb2"  # light gruvbox foreground
+
+  [colors.normal]
+  black   = "#1d2021"  # gruvbox dark black
+  red     = "#fb4934"  # gruvbox red
+  green   = "#85e054"  # gruvbox green
+  yellow  = "#fece56"  # gruvbox yellow
+  blue    = "#83a598"  # gruvbox blue
+  magenta = "#d3869b"  # gruvbox magenta
+  cyan    = "#8ec07c"  # gruvbox cyan
+  white   = "#ebdbb2"  # gruvbox white
+
+  [colors.bright]
+  black   = "#928374"  # gruvbox bright black
+  red     = "#fb4934"  # gruvbox bright red
+  green   = "#8ec07c"  # gruvbox bright green
+  yellow  = "#f9f1a5"  # gruvbox bright yellow
+  blue    = "#83a598"  # gruvbox bright blue
+  magenta = "#d3869b"  # gruvbox bright magenta
+  cyan    = "#8ec07c"  # gruvbox bright cyan
+  white   = "#f2e5bc"  # gruvbox bright white
