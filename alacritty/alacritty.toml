@@ -8,7 +8,7 @@ blinking = "On"
 shape = "Beam"
 
 [font]
-size = 22
+size = 20
 
 [font.bold]
 family = "FiraCode Nerd Font Mono"
@@ -42,7 +42,7 @@ semantic_escape_chars = ''',│`|:"' ()[]{}<>	'''
 decorations = "transparent"
 dynamic_padding = false
 dynamic_title = false
-opacity = 1
+opacity = 0.95
 startup_mode = "Windowed"
 
 [window.dimensions]
@@ -50,8 +50,8 @@ columns = 150
 lines = 45
 
 [window.padding]
-x = 21
-y = 21
+x = 36
+y = 36
 
 [window.position]
 x = 2500
@@ -75,33 +75,54 @@ key = "W"
 mods = "Command"
 action = "Quit"
 
-[[keyboard.bindings]]
-key = "D"
-mods = "Command"
-action = "CreateNewWindow"
-
 # Gruvbox Color Scheme
+# [colors]
+#   [colors.primary]
+#   background = "#282828"  # dark gruvbox background
+#   foreground = "#ebdbb2"  # light gruvbox foreground
+
+#   [colors.normal]
+#   black   = "#1d2021"  # gruvbox dark black
+#   red     = "#fb4934"  # gruvbox red
+#   green   = "#85e054"  # gruvbox green
+#   yellow  = "#fece56"  # gruvbox yellow
+#   blue    = "#83a598"  # gruvbox blue
+#   magenta = "#d3869b"  # gruvbox magenta
+#   cyan    = "#8ec07c"  # gruvbox cyan
+#   white   = "#ebdbb2"  # gruvbox white
+
+#   [colors.bright]
+#   black   = "#928374"  # gruvbox bright black
+#   red     = "#fb4934"  # gruvbox bright red
+#   green   = "#8ec07c"  # gruvbox bright green
+#   yellow  = "#f9f1a5"  # gruvbox bright yellow
+#   blue    = "#83a598"  # gruvbox bright blue
+#   magenta = "#d3869b"  # gruvbox bright magenta
+#   cyan    = "#8ec07c"  # gruvbox bright cyan
+#   white   = "#f2e5bc"  # gruvbox bright white
+
+# Atom Light Color Scheme
 [colors]
   [colors.primary]
-  background = "#282828"  # dark gruvbox background
-  foreground = "#ebdbb2"  # light gruvbox foreground
+  background = "#ffffff"  # Atom light background
+  foreground = "#3A3A3A"  # Atom light foreground
 
   [colors.normal]
-  black   = "#1d2021"  # gruvbox dark black
-  red     = "#fb4934"  # gruvbox red
-  green   = "#85e054"  # gruvbox green
-  yellow  = "#fece56"  # gruvbox yellow
-  blue    = "#83a598"  # gruvbox blue
-  magenta = "#d3869b"  # gruvbox magenta
-  cyan    = "#8ec07c"  # gruvbox cyan
-  white   = "#ebdbb2"  # gruvbox white
+  black   = "#3A3A3A"  # Atom light black
+  red     = "#E45649"  # Atom light red
+  green   = "#50A14F"  # Atom light green
+  yellow  = "#C18401"  # Atom light yellow
+  blue    = "#0184BB"  # Atom light blue
+  magenta = "#A626A4"  # Atom light magenta
+  cyan    = "#1D6F93"  # Atom light cyan
+  white   = "#F9F9F9"  # Atom light white
 
   [colors.bright]
-  black   = "#928374"  # gruvbox bright black
-  red     = "#fb4934"  # gruvbox bright red
-  green   = "#8ec07c"  # gruvbox bright green
-  yellow  = "#f9f1a5"  # gruvbox bright yellow
-  blue    = "#83a598"  # gruvbox bright blue
-  magenta = "#d3869b"  # gruvbox bright magenta
-  cyan    = "#8ec07c"  # gruvbox bright cyan
-  white   = "#f2e5bc"  # gruvbox bright white
+  black   = "#5C6370"  # Atom light bright black
+  red     = "#E45649"  # Atom light bright red
+  green   = "#50A14F"  # Atom light bright green
+  yellow  = "#C18401"  # Atom light bright yellow
+  blue    = "#0184BB"  # Atom light bright blue
+  magenta = "#A626A4"  # Atom light bright magenta
+  cyan    = "#1D6F93"  # Atom light bright cyan
+  white   = "#F9F9F9"  # Atom light bright white
